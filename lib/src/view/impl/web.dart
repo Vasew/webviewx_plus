@@ -219,7 +219,7 @@ class _WebViewXState extends State<WebViewX> {
 
       then?.call();
 
-      /*
+      
       // Registering the same events as we already do inside
       // HtmlUtils.embedClickListenersInPageSource(), but in Dart.
       // So far it seems to be working, but needs more testing.
@@ -269,7 +269,7 @@ class _WebViewXState extends State<WebViewX> {
           }
         })
       ]);
-      */
+      
     };
   }
 
