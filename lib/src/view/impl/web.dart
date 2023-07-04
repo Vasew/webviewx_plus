@@ -202,8 +202,10 @@ class _WebViewXState extends State<WebViewX> {
   // Iframe viewType is used as a disambiguator.
   // Check function [embedWebIframeJsConnector] from [HtmlUtils] for details.
   void _connectJsToFlutter({VoidCallback? then}) {
+    print("Start _connectJsToFlutter");
     js.context['$jsToDartConnectorFN$iframeViewType'] = (js.JsObject window) {
       jsWindowObject = window;
+      print("Register window context");
 
       /// Register dart callbacks one by one.
       for (final cb in widget.dartCallBacks) {
