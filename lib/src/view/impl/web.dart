@@ -228,7 +228,6 @@ class _WebViewXState extends State<WebViewX> {
       jsWindowObject.callMethod('addEventListener', [
         "click",
         js.allowInterop((event) {
-          print("EVENT CLICK");
           final href = jsWindowObject["document"]["activeElement"]["href"].toString();
           print(href);
         })
@@ -237,7 +236,6 @@ class _WebViewXState extends State<WebViewX> {
       jsWindowObject.callMethod('addEventListener', [
         "submit",
         js.allowInterop((event) {
-          print("EVENT SUBMIT");
           final form = jsWindowObject["document"]["activeElement"]["form"];
 
           final method = form["method"].toString();
