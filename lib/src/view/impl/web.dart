@@ -237,7 +237,7 @@ class _WebViewXState extends State<WebViewX> {
         "reset", 
         js.allowInterop((event) {
           print("EVENT RESET");
-        });
+        })
       ]);
       
       jsWindowObject.callMethod('addEventListener', [
