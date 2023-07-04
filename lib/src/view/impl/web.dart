@@ -228,15 +228,9 @@ class _WebViewXState extends State<WebViewX> {
       jsWindowObject.callMethod('addEventListener', [
         "click",
         js.allowInterop((event) {
+          print("EVENT CLICK");
           final href = jsWindowObject["document"]["activeElement"]["href"].toString();
           print(href);
-        })
-      ]);
-
-      jsWindowObject.callMethod('addEventListener', [
-        "reset", 
-        js.allowInterop((event) {
-          print("EVENT RESET");
         })
       ]);
       
