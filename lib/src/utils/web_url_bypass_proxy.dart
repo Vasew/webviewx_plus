@@ -23,7 +23,7 @@ abstract class BypassProxy {
     Map<String, String>? headers,
     Object? body,
   }) async {
-    final proxiedUri = Uri.parse(buildProxyUrl(Uri.encodeFull(url)));
+    final proxiedUri = Uri.parse(Uri.encodeFull(url));
 
     Future<http.Response> request;
 
