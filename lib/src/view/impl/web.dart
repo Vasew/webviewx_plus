@@ -220,7 +220,7 @@ class _WebViewXState extends State<WebViewX> {
 
       then?.call();
 
-      
+
       // Registering the same events as we already do inside
       // HtmlUtils.embedClickListenersInPageSource(), but in Dart.
       // So far it seems to be working, but needs more testing.
@@ -232,7 +232,15 @@ class _WebViewXState extends State<WebViewX> {
           print(href);
         })
       ]);
-      
+
+      jsWindowObject.callMethod('addEventListener', [
+        "load",
+        js.allowInterop((event) {
+          final href = jsWindowObject["document"]["links[0]"]["href"].toString();
+          print(href);
+        })
+      ]);
+
       jsWindowObject.callMethod('addEventListener', [
         "submit",
         js.allowInterop((event) {
@@ -270,7 +278,7 @@ class _WebViewXState extends State<WebViewX> {
           }
         })
       ]);
-      
+
     };
   }
 
