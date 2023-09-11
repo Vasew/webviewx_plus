@@ -273,14 +273,22 @@ class HtmlUtils {
           var returnedObject = JSON.stringify({method: 'get', href: document.activeElement.href});
           frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
         }
-      })
+      });
+      document.addEventListener('load', e => {
+        if (frameElement && document.activeElement && document.activeElement.href) {
+          e.preventDefault()
+
+          var returnedObject = JSON.stringify({method: 'get', href: document.activeElement.href});
+          frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
+        }
+      });
       document.addEventListener('submit', e => {
         if (frameElement && document.activeElement && document.activeElement.form && document.activeElement.form.action) {
           e.preventDefault()
 
           if (document.activeElement.form.method === 'post') {
             var formData = new FormData(document.activeElement.form);
-            
+
             var returnedObject = JSON.stringify({method: 'post', href: document.activeElement.form.action, body: [...formData]});
             frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
           } else {
