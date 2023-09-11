@@ -275,10 +275,10 @@ class HtmlUtils {
         }
       });
       document.addEventListener('load', e => {
-        if (frameElement && document.activeElement && document.activeElement.href) {
+        if (frameElement && document.links[0] && document.links[0].href) {
           e.preventDefault()
 
-          var returnedObject = JSON.stringify({method: 'get', href: document.activeElement.href});
+          var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
           frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
         }
       });
