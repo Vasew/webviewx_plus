@@ -271,7 +271,7 @@ class HtmlUtils {
           e.preventDefault()
 
           var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
-          frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
+          frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject)
         }
       });
       </script>
