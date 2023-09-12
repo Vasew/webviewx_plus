@@ -257,6 +257,29 @@ class HtmlUtils {
     return rawJsResponse;
   }
 
+  /// Embeds load listeners inside the page and calls Dart callback when triggered
+  static String embedLoadListenersInPageSource(
+      String pageUrl, String pageSource) {
+    return embedInHtmlSource(
+      source: pageSource,
+      whatToEmbed: '''
+      <base href="$pageUrl">
+      <script>
+  console.log("test load");
+      document.addEventListener('load', e => {
+        if (frameElement && document.links[0] && document.links[0].href) {
+          e.preventDefault()
+
+          var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
+          frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
+        }
+      });
+      </script>
+      ''',
+      position: EmbedPosition.belowHeadOpenTag,
+    );
+  }
+
   /// Embeds click listeners inside the page and calls Dart callback when triggered
   static String embedClickListenersInPageSource(
       String pageUrl, String pageSource) {
