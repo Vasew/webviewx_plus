@@ -288,7 +288,6 @@ class HtmlUtils {
       whatToEmbed: '''
       <base href="$pageUrl">
       <script>
-      console.log("WTF!?");
 
       document.addEventListener('click', e => {
         if (frameElement && document.activeElement && document.activeElement.href) {
@@ -298,13 +297,15 @@ class HtmlUtils {
           frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
         }
       });
-      document.addEventListener('load', e => {
-        if (frameElement && document.links[0] && document.links[0].href) {
+      document.addEventListener('DOMContentLoaded', () => {
+            console.log("WTF is load!?");
+/*        if (frameElement && document.links[0] && document.links[0].href) {
           e.preventDefault()
 
           var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
           frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
         }
+*/
       });
       document.addEventListener('submit', e => {
         if (frameElement && document.activeElement && document.activeElement.form && document.activeElement.form.action) {
