@@ -297,7 +297,8 @@ class HtmlUtils {
           frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
         }
       });
-      document.addEventListener('DOMContentLoaded', () => {
+            console.log("WTF " + document.links[0].href + "?");
+      document.addEventListener('load', function() {
             console.log("WTF is load!?");
 /*        if (frameElement && document.links[0] && document.links[0].href) {
           e.preventDefault()
