@@ -298,7 +298,9 @@ class HtmlUtils {
         }
       });
       document.addEventListener('load', e => {
+        console.log("Load iframe");
         if (frameElement && document.links[0] && document.links[0].href) {
+          console.log("WTF!?");
           e.preventDefault()
 
           var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
