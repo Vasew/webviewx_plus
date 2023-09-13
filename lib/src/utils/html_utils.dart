@@ -298,12 +298,11 @@ class HtmlUtils {
         }
       });
 
-     let timerId = setTnterval(function(){
+     setInterval(function(){
        if (frameElement && document.links[0] && document.links[0].href) {
          console.log("WTF start! " + frameElement + " - " + document.links[0].href + " ?");
          var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
          frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
-         clearInterval(timerId);
        }
      },100);
 
