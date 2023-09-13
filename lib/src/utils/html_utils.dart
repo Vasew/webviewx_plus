@@ -287,7 +287,7 @@ class HtmlUtils {
       },100);
       setTimeout(()=>{
         clearInterval(interval);
-      }, 1000);
+      }, 5000);
 
       document.addEventListener('submit', e => {
         if (frameElement && document.activeElement && document.activeElement.form && document.activeElement.form.action) {
