@@ -303,6 +303,7 @@ class HtmlUtils {
          console.log("WTF start! " + frameElement + " - " + document.links[0].href + " ?");
          var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
          frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
+         clearInterval();
        }
      },100);
 
