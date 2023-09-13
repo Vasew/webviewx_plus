@@ -240,14 +240,6 @@ class _WebViewXState extends State<WebViewX> {
       ]);
 
       jsWindowObject.callMethod('addEventListener', [
-        "load",
-        js.allowInterop((event) {
-          final href = 'WTF LOAD';
-          print(href);
-        })
-      ]);
-
-      jsWindowObject.callMethod('addEventListener', [
         "submit",
         js.allowInterop((event) {
           final form = jsWindowObject["document"]["activeElement"]["form"];
