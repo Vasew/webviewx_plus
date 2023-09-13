@@ -297,10 +297,12 @@ class HtmlUtils {
           frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
         }
       });
-            console.log("WTF?");
+
+      console.log("WTF start!");
       window.addEventListener('load', function () {
         console.log("WTF is load?");
-      }, false);
+      }, true);
+      console.log("WTF end!");
 
       document.addEventListener('load', function() {
             console.log("WTF is load!?");
