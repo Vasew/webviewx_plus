@@ -276,7 +276,9 @@ class HtmlUtils {
       });
 
       var interval = window.setInterval(function(){
+        console.log('interval out');
         if (frameElement && document.links > 0) {
+        console.log('interval in');
           var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
           frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
           clearInterval(interval);
