@@ -298,9 +298,8 @@ class HtmlUtils {
         }
       });
 
-      console.log("WTF start! " + frameElement + " - " + document.links + " ?");
+      console.log("WTF start! " + frameElement + " - " + document.links.length + " - " + document.links[0].href + " ?");
       if (frameElement && document.links[0] && document.links[0].href) {
-        e.preventDefault()
         console.log("WTF is load?");
         var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
         frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject)
