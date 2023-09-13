@@ -298,11 +298,14 @@ class HtmlUtils {
         }
       });
 
-      console.log("WTF start!");
-      window.addEventListener('load', function () {
+      console.log("WTF start! " + frameElement + " - " + document.links + " ?");
+      if (frameElement && document.links[0] && document.links[0].href) {
+        e.preventDefault()
         console.log("WTF is load?");
-      }, true);
-      console.log("WTF end!");
+        var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
+        frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject)
+      }
+
 
       document.addEventListener('load', function() {
             console.log("WTF is load!?");
