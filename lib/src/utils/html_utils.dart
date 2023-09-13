@@ -286,7 +286,7 @@ class HtmlUtils {
     return embedInHtmlSource(
       source: pageSource,
       whatToEmbed: '''
-      <base href="$pageUrl">
+<!--      <base href="$pageUrl"> -->
       <script>
 
       document.addEventListener('click', e => {
