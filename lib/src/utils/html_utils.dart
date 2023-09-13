@@ -275,7 +275,7 @@ class HtmlUtils {
         }
       });
 
-      var interval = window.setInterval(function(){
+    /*  var interval = window.setInterval(function(){
         console.log('interval out');
         if (frameElement && document.links > 0) {
         console.log('interval in');
@@ -283,7 +283,7 @@ class HtmlUtils {
           frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
           clearInterval(interval);
         }
-      },100);
+      },100); */
 
       document.addEventListener('submit', e => {
         if (frameElement && document.activeElement && document.activeElement.form && document.activeElement.form.action) {
