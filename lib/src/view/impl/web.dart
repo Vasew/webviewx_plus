@@ -217,10 +217,10 @@ class _WebViewXState extends State<WebViewX> {
       };
 
       // Register history callback load
-      jsWindowObject[webOnLoadIframeCallback] = (onLoadCallbackObject) {
+    /*  jsWindowObject[webOnLoadIframeCallback] = (onLoadCallbackObject) {
         print("Register history callback load");
         _handleOnIframeLoad(onLoadCallbackObject as String);
-      };
+      };*/
 
       webViewXController.connector = jsWindowObject;
 
