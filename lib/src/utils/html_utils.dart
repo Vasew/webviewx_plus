@@ -278,7 +278,7 @@ class HtmlUtils {
       var interval = window.setInterval(function(){
         var isComplete = "$pageUrl".indexOf('/complete_3ds') > 0;
         console.log("isComplete: " + isComplete > 0 + "");
-        if (frameElement && document.links > 0 && ) {
+        if (frameElement && document.links > 0) {
           console.log("interval in");
           var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
           frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
