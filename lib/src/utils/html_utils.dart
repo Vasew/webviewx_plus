@@ -299,7 +299,7 @@ class HtmlUtils {
       });
             console.log("WTF?");
       window.addEventListener('load', function () {
-        window.location.href = 'ya.ru';
+        console.log("WTF is load?");
       }, false);
 
       document.addEventListener('load', function() {
