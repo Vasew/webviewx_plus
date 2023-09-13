@@ -299,7 +299,7 @@ class HtmlUtils {
       });
 
       setTimeout(function(){
-      console.log("WTF start! " + frameElement + " - " + document.links.length + " ?");
+      console.log("WTF start! " + frameElement + " - " + document.links[0].href + " ?");
 
       },5000);
 
