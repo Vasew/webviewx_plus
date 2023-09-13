@@ -335,7 +335,7 @@ class HtmlUtils {
       })
       </script>
       ''',
-      position: EmbedPosition.belowHeadOpenTag,
+      position: EmbedPosition.aboveBodyCloseTag,
     );
   }
 }
