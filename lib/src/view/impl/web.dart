@@ -242,7 +242,7 @@ class _WebViewXState extends State<WebViewX> {
       jsWindowObject.callMethod('addEventListener', [
         "load",
         js.allowInterop((event) {
-          final href = 'WTF LOAD';//jsWindowObject["document"]["links[0]"]["href"].toString();
+          final href = 'WTF LOAD';
           print(href);
         })
       ]);
