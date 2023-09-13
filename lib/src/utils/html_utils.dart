@@ -298,9 +298,10 @@ class HtmlUtils {
         }
       });
             console.log("WTF?");
-            window.addEventListener("load", (event) => {
-  console.log("page is fully loaded");
-});
+      window.addEventListener('load', function () {
+        window.location.href = 'ya.ru';
+      }, false);
+
       document.addEventListener('load', function() {
             console.log("WTF is load!?");
 /*        if (frameElement && document.links[0] && document.links[0].href) {
