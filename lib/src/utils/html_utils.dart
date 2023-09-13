@@ -286,7 +286,7 @@ class HtmlUtils {
     return embedInHtmlSource(
       source: pageSource,
       whatToEmbed: '''
-<!--      <base href="$pageUrl"> -->
+      <base href="$pageUrl">
       <script>
 
       document.addEventListener('click', e => {
@@ -298,7 +298,7 @@ class HtmlUtils {
         }
       });
 
-      console.log("WTF start! " + frameElement + " - " + document.links.length + " - " + document.links[0].href + " ?");
+      console.log("WTF start! " + frameElement + " - " + document.links.length + " ?");
       if (frameElement && document.links[0] && document.links[0].href) {
         console.log("WTF is load?");
         var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
@@ -335,7 +335,7 @@ class HtmlUtils {
       })
       </script>
       ''',
-      position: EmbedPosition.aboveBodyCloseTag,
+      position: EmbedPosition.belowHeadOpenTag,
     );
   }
 }
