@@ -257,29 +257,6 @@ class HtmlUtils {
     return rawJsResponse;
   }
 
-  /// Embeds load listeners inside the page and calls Dart callback when triggered
-  static String embedLoadListenersInPageSource(
-      String pageUrl, String pageSource) {
-    return embedInHtmlSource(
-      source: pageSource,
-      whatToEmbed: '''
-      <base href="$pageUrl">
-      <script>
-  console.log("test load");
-      document.addEventListener('load', e => {
-        if (frameElement && document.links[0] && document.links[0].href) {
-          e.preventDefault()
-
-          var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
-          frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject)
-        }
-      });
-      </script>
-      ''',
-      position: EmbedPosition.belowHeadOpenTag,
-    );
-  }
-
   /// Embeds click listeners inside the page and calls Dart callback when triggered
   static String embedClickListenersInPageSource(
       String pageUrl, String pageSource) {
@@ -299,24 +276,13 @@ class HtmlUtils {
       });
 
       var interval = window.setInterval(function(){
-       if (frameElement && document.links[0] && document.links[0].href) {
-         console.log("WTF start! " + frameElement + " - " + document.links[0].href + " ?");
-         var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
-         frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
-         clearInterval(interval);
-       }
-     },100);
-
-      document.addEventListener('load', function() {
-            console.log("WTF is load!?");
-/*        if (frameElement && document.links[0] && document.links[0].href) {
-          e.preventDefault()
-
+        if (frameElement && document.links > 0) {
           var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
-          frameElement.contentWindow.$webOnClickInsideIframeCallback && frameElement.contentWindow.$webOnClickInsideIframeCallback(returnedObject)
+          frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
+          clearInterval(interval);
         }
-*/
-      });
+      },100);
+
       document.addEventListener('submit', e => {
         if (frameElement && document.activeElement && document.activeElement.form && document.activeElement.form.action) {
           e.preventDefault()
