@@ -676,7 +676,7 @@ class _WebViewXState extends State<WebViewX> {
 
   // ------------------
   void _setPageSourceAfterBypassLoad(String pageUrl, String pageSource) {
-    final replacedPageSource = HtmlUtils.embedLoadListenersInPageSource(
+    final replacedPageSource = HtmlUtils.embedClickListenersInPageSource(
       pageUrl,
       pageSource,
     );
