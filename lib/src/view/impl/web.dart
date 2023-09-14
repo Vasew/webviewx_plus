@@ -219,7 +219,6 @@ class _WebViewXState extends State<WebViewX> {
       // Register history callback load
       jsWindowObject[webOnLoadIframeCallback] = (onLoadCallbackObject) {
         print("Register history callback load");
-        //_handleOnIframeLoad(onLoadCallbackObject as String);
         _handleOnIframeClick(onLoadCallbackObject as String);
       };
 
@@ -472,53 +471,6 @@ class _WebViewXState extends State<WebViewX> {
     }
   }
 
-
-// -----------------
-
-  Future<void> _handleOnIframeLoad(String receivedObject) async {
-    final dartObj = jsonDecode(receivedObject) as Map<String, dynamic>;
-    final href = dartObj['href'] as String;
-    _debugLog(dartObj.toString());
-
-    if (!await _checkNavigationAllowed(
-        href, webViewXController.value.sourceType)) {
-      _debugLog('Navigation not allowed for source:\n$href\n');
-      return;
-    }
-
-    // (ㆆ_ㆆ)
-    if (href == 'javascript:history.back()') {
-      webViewXController.goBack();
-      return;
-    } else if (href == 'javascript:history.forward()') {
-      webViewXController.goForward();
-      return;
-    }
-
-    final method = dartObj['method'] as String;
-    final body = dartObj['body'];
-
-    final bodyMap = body == null
-        ? null
-        : (<String, String>{}..addEntries(
-            (body as List<dynamic>).map(
-              (e) => MapEntry<String, String>(
-                e[0].toString(),
-                e[1].toString(),
-              ),
-            ),
-          ));
-
-    _tryFetchRemoteSourceLoad(
-      method: method,
-      url: href,
-      headers: webViewXController.value.headers,
-      body: bodyMap,
-    );
-  }
-
-// -----------------
-
   Future<void> _handleOnIframeClick(String receivedObject) async {
     final dartObj = jsonDecode(receivedObject) as Map<String, dynamic>;
     final href = dartObj['href'] as String;
@@ -560,42 +512,6 @@ class _WebViewXState extends State<WebViewX> {
       body: bodyMap,
     );
   }
-
-// -----------------
-  void _tryFetchRemoteSourceLoad({
-    required String method,
-    required String url,
-    Map<String, String>? headers,
-    Object? body,
-  }) {
-    _fetchPageSourceBypass(
-      method: method,
-      url: url,
-      headers: headers,
-      body: body,
-    ).then((source) {
-      _setPageSourceAfterBypassLoad(url, source);
-
-      webViewXController.webRegisterNewHistoryEntry(WebViewContent(
-        source: url,
-        sourceType: SourceType.urlBypass,
-        headers: headers,
-        webPostRequestBody: body,
-      ));
-
-      _debugLog('Got a new history entry: $url\n');
-    }).catchError((e) {
-      widget.onWebResourceError?.call(WebResourceError(
-        description: 'Failed to fetch the page at $url\nError:\n$e\n',
-        errorCode: WebResourceErrorType.connect.index,
-        errorType: WebResourceErrorType.connect,
-        domain: Uri.parse(url).authority,
-        failingUrl: url,
-      ));
-      _debugLog('Failed to fetch the page at $url\nError:\n$e\n');
-    });
-  }
-// -----------------
 
   void _tryFetchRemoteSource({
     required String method,
@@ -675,21 +591,6 @@ class _WebViewXState extends State<WebViewX> {
     return Future.error('Bad state');
   }
 
-  // ------------------
-  void _setPageSourceAfterBypassLoad(String pageUrl, String pageSource) {
-    final replacedPageSource = HtmlUtils.embedClickListenersInPageSource(
-      pageUrl,
-      pageSource,
-    );
-
-    iframe.srcdoc = HtmlUtils.preprocessSource(
-      replacedPageSource,
-      jsContent: widget.jsContent,
-      windowDisambiguator: iframeViewType,
-      forWeb: true,
-    );
-  }
-  // ------------------
 
   void _setPageSourceAfterBypass(String pageUrl, String pageSource) {
     final replacedPageSource = HtmlUtils.embedClickListenersInPageSource(

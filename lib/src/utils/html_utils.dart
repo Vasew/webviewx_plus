@@ -278,7 +278,6 @@ class HtmlUtils {
       if("$pageUrl".indexOf('/complete_3ds') > 0){
         var interval = window.setInterval(function(){
           if (frameElement && document.links.length > 0 ) {
-            console.log("interval in");
             var returnedObject = JSON.stringify({method: 'get', href: document.links[0].href});
             frameElement.contentWindow.$webOnLoadIframeCallback && frameElement.contentWindow.$webOnLoadIframeCallback(returnedObject);
             clearInterval(interval);
@@ -286,7 +285,7 @@ class HtmlUtils {
         },100);
         setTimeout(()=>{
           clearInterval(interval);
-        }, 5000);
+        }, 1000);
       }
 
       document.addEventListener('submit', e => {
