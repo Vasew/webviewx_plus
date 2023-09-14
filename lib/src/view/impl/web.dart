@@ -238,7 +238,7 @@ class _WebViewXState extends State<WebViewX> {
           print(href);
         })
       ]);
-
+/*
       jsWindowObject.callMethod('addEventListener', [
         "load",
         js.allowInterop((event) {
@@ -246,7 +246,7 @@ class _WebViewXState extends State<WebViewX> {
           print(href);
         })
       ]);
-
+*/
       jsWindowObject.callMethod('addEventListener', [
         "submit",
         js.allowInterop((event) {
